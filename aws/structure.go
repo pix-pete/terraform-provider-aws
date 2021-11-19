@@ -4871,13 +4871,15 @@ func expandAppmeshVirtualRouterSpec(vSpec []interface{}) *appmesh.VirtualRouterS
 	spec := &appmesh.VirtualRouterSpec{}
 
 	if vServiceNames, ok := mSpec["service_names"].(*schema.Set); ok && vServiceNames.Len() > 0 {
-		spec.ServiceNames = expandStringSet(vServiceNames)
+		// PRC HACK spec.ServiceNames = expandStringSet(vServiceNames)
 	}
 
 	return spec
 }
 
 func flattenAppmeshVirtualRouterSpec(spec *appmesh.VirtualRouterSpec) []interface{} {
+
+	/* PRC HACK
 	if spec == nil {
 		return []interface{}{}
 	}
@@ -4887,6 +4889,8 @@ func flattenAppmeshVirtualRouterSpec(spec *appmesh.VirtualRouterSpec) []interfac
 	}
 
 	return []interface{}{mSpec}
+	*/
+	return []interface{}{}
 }
 
 func expandAppmeshVirtualNodeSpec(vSpec []interface{}) *appmesh.VirtualNodeSpec {
@@ -4899,7 +4903,7 @@ func expandAppmeshVirtualNodeSpec(vSpec []interface{}) *appmesh.VirtualNodeSpec 
 	mSpec := vSpec[0].(map[string]interface{})
 
 	if vBackends, ok := mSpec["backends"].(*schema.Set); ok && vBackends.Len() > 0 {
-		spec.Backends = expandStringSet(vBackends)
+		// PRC HACK	spec.Backends = expandStringSet(vBackends)
 	}
 
 	if vListeners, ok := mSpec["listener"].(*schema.Set); ok && vListeners.Len() > 0 {
@@ -4962,7 +4966,7 @@ func expandAppmeshVirtualNodeSpec(vSpec []interface{}) *appmesh.VirtualNodeSpec 
 
 		if vDns, ok := mServiceDiscovery["dns"].([]interface{}); ok && len(vDns) > 0 && vDns[0] != nil {
 			mDns := vDns[0].(map[string]interface{})
-
+			/* PRC HACK
 			if vServiceName, ok := mDns["service_name"].(string); ok && vServiceName != "" {
 				spec.ServiceDiscovery = &appmesh.ServiceDiscovery{
 					Dns: &appmesh.DnsServiceDiscovery{
@@ -4970,6 +4974,7 @@ func expandAppmeshVirtualNodeSpec(vSpec []interface{}) *appmesh.VirtualNodeSpec 
 					},
 				}
 			}
+			*/
 		}
 	}
 
@@ -4977,6 +4982,7 @@ func expandAppmeshVirtualNodeSpec(vSpec []interface{}) *appmesh.VirtualNodeSpec 
 }
 
 func flattenAppmeshVirtualNodeSpec(spec *appmesh.VirtualNodeSpec) []interface{} {
+	/* PRC HACK
 	if spec == nil {
 		return []interface{}{}
 	}
@@ -5033,6 +5039,9 @@ func flattenAppmeshVirtualNodeSpec(spec *appmesh.VirtualNodeSpec) []interface{} 
 	}
 
 	return []interface{}{mSpec}
+	*/
+	return []interface{}{}
+
 }
 
 func expandAppmeshRouteSpec(vSpec []interface{}) *appmesh.RouteSpec {

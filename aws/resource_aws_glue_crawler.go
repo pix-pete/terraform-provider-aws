@@ -359,6 +359,7 @@ func expandGlueJdbcTarget(cfg map[string]interface{}) *glue.JdbcTarget {
 }
 
 func resourceAwsGlueCrawlerUpdate(d *schema.ResourceData, meta interface{}) error {
+	/* PRC HACK
 	glueConn := meta.(*AWSClient).glueconn
 	name := d.Get("name").(string)
 
@@ -389,6 +390,8 @@ func resourceAwsGlueCrawlerUpdate(d *schema.ResourceData, meta interface{}) erro
 	}
 
 	return resourceAwsGlueCrawlerRead(d, meta)
+	*/
+	return nil
 }
 
 func resourceAwsGlueCrawlerRead(d *schema.ResourceData, meta interface{}) error {

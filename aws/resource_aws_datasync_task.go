@@ -98,11 +98,13 @@ func resourceAwsDataSyncTask() *schema.Resource {
 							Type:     schema.TypeString,
 							Optional: true,
 							Default:  datasync.PosixPermissionsPreserve,
+							/* PRC HACK
 							ValidateFunc: validation.StringInSlice([]string{
 								datasync.PosixPermissionsBestEffort,
 								datasync.PosixPermissionsNone,
 								datasync.PosixPermissionsPreserve,
 							}, false),
+							*/
 						},
 						"preserve_deleted_files": {
 							Type:     schema.TypeString,

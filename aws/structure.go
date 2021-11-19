@@ -4965,8 +4965,9 @@ func expandAppmeshVirtualNodeSpec(vSpec []interface{}) *appmesh.VirtualNodeSpec 
 		mServiceDiscovery := vServiceDiscovery[0].(map[string]interface{})
 
 		if vDns, ok := mServiceDiscovery["dns"].([]interface{}); ok && len(vDns) > 0 && vDns[0] != nil {
-			mDns := vDns[0].(map[string]interface{})
 			/* PRC HACK
+
+			mDns := vDns[0].(map[string]interface{})
 			if vServiceName, ok := mDns["service_name"].(string); ok && vServiceName != "" {
 				spec.ServiceDiscovery = &appmesh.ServiceDiscovery{
 					Dns: &appmesh.DnsServiceDiscovery{
